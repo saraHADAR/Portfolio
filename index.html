@@ -36,7 +36,7 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
-<a href="resume.pdf" target="_blank" class="btn btn-secondary">Download Resume</a>
+                    <a href="resume.pdf" download class="btn btn-secondary">Download Resume</a>
                 </div>
             </div>
         </div>
@@ -116,10 +116,9 @@
                         </a>
                     </div>
                     <div class="project-images">
-                        <div class="project-image">
-                            <img src="בשמים.png" alt="Perfume Sales Site">
+                    <div class="project-image">
+                        <img src="בשמים.png" alt="Perfume Sales Site">
                         </div>
-                    
                     </div>
                 </div>
 
@@ -149,7 +148,9 @@
                         </a>
                     </div>
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Gossi Bar">
+                        <!-- <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Gossi Bar"> -->
+                        <img src="גויסי בר.png" alt="Gossi Bar">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,26 +201,49 @@
         </div>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-    (function(){
-        emailjs.init("zfgwOC74xyPrsgi8g"); // הכנסי כאן את ה-Public Key שלך מ-EmailJS
-    })();
-
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const form = this;
-
-        emailjs.sendForm('service_8txocnt', 'Contact Us', form)
-        .then(function(response) {
-            alert('Thank you! Your message has been sent.');
-            form.reset();
-        }, function(error) {
-            alert('Oops! Something went wrong. Please try again.');
+    <!-- <script>
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const subject = 'Portfolio Contact - ' + name;
+            const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
+            const mailtoLink = 'mailto:sara.hadar769@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you! Your email client should open with your message ready to send.');
         });
-    });
-</script>
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("zfgwOC74xyPrsgi8g"); // הכנסי כאן את ה-Public Key שלך מ-EmailJS
+  })();
 
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+
+    // שליחת הטופס דרך EmailJS
+    emailjs.sendForm('service_8txocnt', 'Contact Us', form)
+      .then(function(response) {
+        alert('Thank you! Your message has been sent.');
+        form.reset(); // איפוס הטופס אחרי הצלחה
+      }, function(error) {
+        console.error('EmailJS Error:', error);
+        alert('Oops! Something went wrong. Please try again.');
+      });
+  });
+</script>
 </body>
 </html>
+
+
