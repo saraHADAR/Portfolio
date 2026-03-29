@@ -1,250 +1,233 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sara Hadar - UI/UX Designer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>Sara Hadar</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+import { useState } from "react";
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <div class="line">Hi, I'm <span class="highlight">Sara Hadar</span></div>
-                    <div class="line">UI/UX Designer</div>
-                </h1>
-                <p class="hero-subtitle">
-                    Creating smart, intuitive, and beautiful digital experiences
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="resume.pdf" download class="btn btn-secondary">Download Resume</a>
-                </div>
-            </div>
-        </div>
-    </section>
+const projects = [
+  {
+    number: "01",
+    title: "Shimrit Levy - Communication Clinician",
+    category: "Design and Development of a Landing Page in WordPress",
+    description:
+      "A full landing page for a communication clinician and parent coach. Book an appointment directly on WhatsApp, responsive design.",
+    link: "https://shimritlevy.co.il/",
+    image: "/images/shimrit-levy.png",
+  },
+  {
+    number: "02",
+    title: "MediTech - Medical Center System",
+    category: "Healthcare UI/UX Design",
+    description:
+      "Comprehensive digital health platform with medication management, prescriptions, and online medical services",
+    link: "https://www.figma.com/proto/N9vvGsPqUoMhSbdTUPRfjq/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9C%D7%9E%D7%A8%D7%9B%D7%96-%D7%A8%D7%A4%D7%95%D7%90%D7%99?page-id=&node-id=89-766&viewport=80%2C137%2C0.11&t=JzRWkNoCE64fhneP-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=58%3A2996",
+    image: "",
+  },
+  {
+    number: "03",
+    title: "Perfume Sales Site",
+    category: "E-commerce & UI Design",
+    description:
+      "User interface design for perfume sales website with intuitive shopping experience",
+    link: "https://www.figma.com/proto/laH0zpGm7IazD9bNyQRkai/Perfume-sales-site?node-id=76-58&starting-point-node-id=76%3A58",
+    image: "",
+  },
+  {
+    number: "04",
+    title: "Website Design Project",
+    category: "Web Design & UI/UX",
+    description:
+      "User interface design for website with focus on advanced user experience",
+    link: "https://www.figma.com/proto/bFiGgnVyLIg5bu3CLo7KFl/%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98-%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%90%D7%AA%D7%A8?node-id=28-105&starting-point-node-id=45%3A469",
+    image: "",
+  },
+  {
+    number: "05",
+    title: "Gossi Bar",
+    category: "Web Design & UI/UX",
+    description:
+      "User interface design for website with focus on advanced user experience",
+    link: "https://www.figma.com/proto/h2myR5q4iXJRGc6RW2bojX/%D7%92%D7%95-%D7%A1%D7%99-%D7%91%D7%A8?node-id=196-3",
+    image: "",
+  },
+];
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>
-                        UI/UX Designer with experience in both design and Full Stack development. 
-                        I excel at paying attention to small details during design and specification, 
-                        and I'm strong at implementing upgrades to existing features with creative thinking.
-                    </p>
-                    <p>
-                        I have experience in self-learning new tools and technologies during my studies, 
-                        conducting thorough research and implementing efficiently. I bring experience in 
-                        leading development and specification processes for projects while meeting tight 
-                        deadlines and high motivation to advance further.
-                    </p>
-                    <div class="skills">
-                        <div class="skill-category">
-                            <h3>Design & Prototyping</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Figma</span>
-                                <span class="skill-tag">Photoshop</span>
-                                <span class="skill-tag">Illustrator</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Development</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">Angular</span>
-                                <span class="skill-tag">TypeScript</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">C#</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="woman-making-modern-app-interface.jpg" alt="Sara Hadar - UI/UX Designer" >
-                </div>
-            </div>
-        </div>
-    </section>
+const Index = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-list">
-                <div class="project-item">
-                                        <div class="project-number">01</div>
-                    <div class="project-content">
-                        <h3>MediTech - Medical Center System</h3>
-                        <p class="project-category">Healthcare UI/UX Design</p>
-                        <p class="project-description">Comprehensive digital health platform with medication management, prescriptions, and online medical services</p>
-                        <a href="https://www.figma.com/proto/N9vvGsPqUoMhSbdTUPRfjq/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9C%D7%9E%D7%A8%D7%9B%D7%96-%D7%A8%D7%A4%D7%95%D7%90%D7%99?page-id=&node-id=89-766&viewport=80%2C137%2C0.11&t=JzRWkNoCE64fhneP-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=58%3A2996" target="_blank" class="project-link">
-                            View Project →
-                        </a>
-                    </div>
-                    <div class="project-image">
-                        <img src="תרופות.png" alt="MediTech - Medical Center System">
-                    </div>
-                </div>
-
-                <div class="project-item">
-                                        <div class="project-number">02</div>
-                    <div class="project-content">
-                        <h3>Perfume Sales Site</h3>
-                        <p class="project-category">E-commerce & UI Design</p>
-                        <p class="project-description">User interface design for perfume sales website with intuitive shopping experience</p>
-                        <a href="https://www.figma.com/proto/laH0zpGm7IazD9bNyQRkai/Perfume-sales-site?node-id=76-58&starting-point-node-id=76%3A58" target="_blank" class="project-link">
-                            View Project →
-                        </a>
-                    </div>
-                    <div class="project-images">
-                    <div class="project-image">
-                        <img src="בשמים.png" alt="Perfume Sales Site">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-number">03</div>
-                    <div class="project-content">
-                        <h3>Website Design Project</h3>
-                        <p class="project-category">Web Design & UI/UX</p>
-                        <p class="project-description">User interface design for website with focus on advanced user experience</p>
-                        <a href="https://www.figma.com/proto/bFiGgnVyLIg5bu3CLo7KFl/%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98-%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%90%D7%AA%D7%A8?node-id=28-105&starting-point-node-id=45%3A469" target="_blank" class="project-link">
-                            View Project →
-                        </a>
-                    </div>
-                    <div class="project-image">
-                        <img src="שעונים.png" alt="Website Design Project">
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-number">04</div>
-                    <div class="project-content">
-                        <h3>Gossi Bar</h3>
-                        <p class="project-category">Web Design & UI/UX</p>
-                        <p class="project-description">User interface design for website with focus on advanced user experience</p>
-                        <a href="https://www.figma.com/proto/h2myR5q4iXJRGc6RW2bojX/%D7%92%D7%95-%D7%A1%D7%99-%D7%91%D7%A8?node-id=196-3" target="_blank" class="project-link">
-                            View Project →
-                        </a>
-                    </div>
-                    <div class="project-image">
-                        <img src="גויסי בר.png" alt="Gossi Bar">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>sara.hadar769@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+972 53-316-2858</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <a href="https://github.com/saraHADAR" target="_blank">GitHub</a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Sara Hadar</p>
-        </div>
-    </footer>
-
-    <!-- <script>
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const subject = 'Portfolio Contact - ' + name;
-            const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
-            const mailtoLink = 'mailto:sara.hadar769@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you! Your email client should open with your message ready to send.');
-        });
-    </script> -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init("zfgwOC74xyPrsgi8g"); // הכנסי כאן את ה-Public Key שלך מ-EmailJS
-  })();
-
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const form = this;
+    const subject = `Portfolio Contact - ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    window.location.href = `mailto:sara.hadar769@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
-    // שליחת הטופס דרך EmailJS
-    emailjs.sendForm('service_8txocnt', 'template_yrbctsr', form)
-      .then(function(response) {
-        alert('Thank you! Your message has been sent.');
-        form.reset(); // איפוס הטופס אחרי הצלחה
-      }, function(error) {
-        console.error('EmailJS Error:', error);
-        alert('Oops! Something went wrong. Please try again.');
-      });
-  });
-</script>
-</body>
-</html>
+  return (
+    <div className="portfolio">
+      {/* Navigation */}
+      <nav className="navbar">
+        <div className="nav-container">
+          <div className="nav-logo">
+            <h2>Sara Hadar</h2>
+          </div>
+          <ul className="nav-menu">
+            <li><a href="#about" className="nav-link">About</a></li>
+            <li><a href="#projects" className="nav-link">Projects</a></li>
+            <li><a href="#contact" className="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
 
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              <div className="line">Hi, I'm <span className="highlight">Sara Hadar</span></div>
+              <div className="line">UI/UX Designer</div>
+            </h1>
+            <p className="hero-subtitle">
+              Creating smart, intuitive, and beautiful digital experiences
+            </p>
+            <div className="hero-buttons">
+              <a href="#projects" className="btn btn-primary">View Projects</a>
+              <a href="resume.pdf" download className="btn btn-secondary">Download Resume</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* About Section */}
+      <section id="about" className="about">
+        <div className="container">
+          <div className="about-content">
+            <div className="about-text">
+              <h2>About Me</h2>
+              <p>
+                UI/UX Designer with experience in both design and Full Stack development.
+                I excel at paying attention to small details during design and specification,
+                and I'm strong at implementing upgrades to existing features with creative thinking.
+              </p>
+              <p>
+                I have experience in self-learning new tools and technologies during my studies,
+                conducting thorough research and implementing efficiently. I bring experience in
+                leading development and specification processes for projects while meeting tight
+                deadlines and high motivation to advance further.
+              </p>
+              <div className="skills">
+                <div className="skill-category">
+                  <h3>Design & Prototyping</h3>
+                  <div className="skill-tags">
+                    <span className="skill-tag">Figma</span>
+                    <span className="skill-tag">Photoshop</span>
+                    <span className="skill-tag">Illustrator</span>
+                  </div>
+                </div>
+                <div className="skill-category">
+                  <h3>Development</h3>
+                  <div className="skill-tags">
+                    <span className="skill-tag">React</span>
+                    <span className="skill-tag">Angular</span>
+                    <span className="skill-tag">TypeScript</span>
+                    <span className="skill-tag">Node.js</span>
+                    <span className="skill-tag">C#</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="about-image">
+              <img src="woman-making-modern-app-interface.jpg" alt="Sara Hadar - UI/UX Designer" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="projects">
+        <div className="container">
+          <h2>Projects</h2>
+          <div className="projects-list">
+            {projects.map((project) => (
+              <div key={project.number} className="project-item">
+                <div className="project-number">{project.number}</div>
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  <p className="project-category">{project.category}</p>
+                  <p className="project-description">{project.description}</p>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                    View Project →
+                  </a>
+                </div>
+                {project.image && (
+                  <div className="project-image">
+                    <img src={project.image} alt={project.title} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="contact">
+        <div className="container">
+          <h2>Get In Touch</h2>
+          <div className="contact-content">
+            <div className="contact-info">
+              <div className="contact-item">
+                <i className="fas fa-envelope"></i>
+                <span>sara.hadar769@gmail.com</span>
+              </div>
+              <div className="contact-item">
+                <i className="fas fa-phone"></i>
+                <span>+972 53-316-2858</span>
+              </div>
+              <div className="contact-item">
+                <i className="fab fa-github"></i>
+                <a href="https://github.com/saraHADAR" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+            <div className="contact-form">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+                <div className="form-group">
+                  <textarea
+                    placeholder="Your Message"
+                    rows={5}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <p>&copy; 2025 Sara Hadar</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
